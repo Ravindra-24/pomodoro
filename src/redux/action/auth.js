@@ -1,10 +1,42 @@
 import toast from "react-hot-toast";
 import { auth } from "../api/index";
 import {
+  GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInWithPopup,
   updateProfile,
 } from "firebase/auth";
+
+
+export const GoogleAuthentication = (navigate) => async (dispatch) => {
+  try {
+    await signInWithPopup(auth, new GoogleAuthProvider())
+      .then((result) => {
+        // console.log(result.user)
+        const user = result.user;
+        dispatch({
+          type: "AUTH",
+          payload: {
+            uid: user.uid,
+            userName: user.displayName,
+            initials: user?.displayName?.charAt(0),
+            email: user.email,
+            photo: user?.photoURL,
+            loaded: true,
+          },
+        });
+        toast.success("User logged in successfully");
+        navigate("/");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  } catch (error) {
+    toast.error(error);
+    console.log(error);
+  }
+}
 
 export const signupUser =
   (authData, navigate, setProgress) => async (dispatch) => {

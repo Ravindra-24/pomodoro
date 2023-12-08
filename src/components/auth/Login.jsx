@@ -1,9 +1,10 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../redux/action/auth";
 import withPublic from "../../hoc/withPublic";
+import GoogleAuth from "../../layout/GoogleAuth";
 
 const Login = ({ setProgress }) => {
   const [email, setEmail] = useState("");
@@ -38,7 +39,7 @@ const Login = ({ setProgress }) => {
               src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
               alt="logo"
             />
-            PinterestLike
+            Pomodoro
           </Link>
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -87,18 +88,15 @@ const Login = ({ setProgress }) => {
                 <div className="flex items-center justify-between">
                   <Link
                     to="/forgot-password"
-                    className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    className="text-sm font-medium text-blue-500 hover:underline "
                   >
                     Forgot password?
                   </Link>
                 </div>
                 <button
-                  style={{
-                    background: "#ffbf00",
-                  }}
                   type="submit"
                   disabled={loading}
-                  className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  className="w-full text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
                 >
                   {loading ? (
                     <>
@@ -126,16 +124,20 @@ const Login = ({ setProgress }) => {
                     "Login"
                   )}
                 </button>
-                <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                <p className="text-sm font-light text-gray-100">
                   Don’t have an account yet?{" "}
                   <Link
                     to="/signup"
-                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    className="font-medium text-blue-500 hover:underline"
                   >
                     Sign up
                   </Link>
                 </p>
               </form>
+              <div className="flex justify-center text-white flex-col text-center m-2">
+                <p className="mb-2">OR</p>
+                <GoogleAuth />
+              </div>
             </div>
           </div>
         </div>

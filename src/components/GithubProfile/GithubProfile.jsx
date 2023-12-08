@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { fetchUserProfile } from "../../redux/action/profile";
+import withPrivate from "../../hoc/withPrivate";
 
 const GithubProfile = ({ setProgress }) => {
   const [inputValue, setInputValue] = useState("");
@@ -18,7 +19,7 @@ const GithubProfile = ({ setProgress }) => {
 
   return (
     <div className="flex flex-col justify-center items-center h-screen">
-      <form onSubmit={handleSubmit} className="m-4">
+      <form onSubmit={handleSubmit} className="m-2">
         <input
           type="text"
           value={inputValue}
@@ -28,13 +29,13 @@ const GithubProfile = ({ setProgress }) => {
         />
         <button
           type="submit"
-          className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-md mt-2"
+          className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-md mt-2 ml-2"
         >
           Submit
         </button>
       </form>
       {data && (
-        <div className="max-w-sm rounded overflow-hidden shadow-lg bg-gray-800 border-slate-900 ">
+        <div className="max-w-sm rounded-md overflow-hidden shadow-lg bg-gray-800 border-slate-900 ">
           <div className="flex justify-center w-full">
             <img
               className="rounded-md m-5"
@@ -66,4 +67,4 @@ const GithubProfile = ({ setProgress }) => {
   );
 };
 
-export default GithubProfile;
+export default withPrivate(GithubProfile);

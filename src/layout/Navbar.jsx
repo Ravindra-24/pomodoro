@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { auth } from "../redux/api";
 import { signOut } from "firebase/auth";
+import Avatar, { AvatarLetter } from "./Avatar";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -14,21 +15,22 @@ const Navbar = () => {
 
   return (
     <nav
-      style={{
-        background: "#0E131F",
-      }}
-      className="bg-white-800 shadow-md w-full"
+      className="bg-slate-800 shadow-md w-full"
     >
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="relative flex items-center justify-between h-16">
           <div className="inset-y-0 left-0 flex items-center">
-            <Link to="/">
-              <img
-                className="block lg:hidden h-10 w-auto"
-                src="https://www.svgrepo.com/show/384978/donut-doughnut-sweet-dessert-food-fastfood.svg"
-                alt="Logo"
-              />
-            </Link>
+          <Link
+            to="/"
+            className="flex items-center text-2xl font-semibold text-gray-900 dark:text-white"
+          >
+            <img
+              className="w-8 h-8 mr-2"
+              src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
+              alt="logo"
+            />
+            Pomodoro
+          </Link>
           </div>
 
           <div className=" inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -43,18 +45,11 @@ const Navbar = () => {
                     Github Profile
                   </Link>
                   <div className="flex center items-center ml-2 ">
-                    <button
-                      className="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:shadow-solid"
-                      id="user-menu"
-                      aria-label="User menu"
-                      aria-haspopup="true"
-                    >
-                      <span className="bg-purple-500 rounded-full h-8 w-8 flex items-center justify-center">
-                        <span className="text-white font-medium">
-                          {user?.initials}
-                        </span>
-                      </span>
-                    </button>
+                    {
+                      user.loaded && user.photo ? <Avatar user={user} /> : <AvatarLetter user={user} />
+                    }
+                    {/* <Avatar user={user} />
+                    <AvatarLetter user={user} /> */}
 
                     <svg
                       onClick={handleLogout}
