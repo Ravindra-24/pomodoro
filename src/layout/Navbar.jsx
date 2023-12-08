@@ -14,42 +14,33 @@ const Navbar = () => {
   };
 
   return (
-    <nav
-      className="bg-slate-800 shadow-md w-full"
-    >
+    <nav className="bg-slate-800 shadow-md w-full">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="relative flex items-center justify-between h-16">
           <div className="inset-y-0 left-0 flex items-center">
-          <Link
-            to="/"
-            className="flex items-center text-2xl font-semibold text-gray-900 dark:text-white"
-          >
-            <img
-              className="w-8 h-8 mr-2"
-              src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
-              alt="logo"
-            />
-            Pomodoro
-          </Link>
+            <Link
+              to="/"
+              className="flex items-center text-2xl font-semibold text-gray-900 dark:text-white"
+            >
+              <img
+                className="w-8 h-8 mr-2"
+                src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
+                alt="logo"
+              />
+              Pomodoro
+            </Link>
           </div>
 
           <div className=" inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             <div className="ml-3 relative flex">
               {user.loaded && user.uid && (
                 <>
-                  <Link
-                    to="github-profile"
-                    className="text-[0.7rem] bg-purple-400 text-white hover:bg-purple-500 rounded-md p-2 "
-                  >
-                    {" "}
-                    Github Profile
-                  </Link>
                   <div className="flex center items-center ml-2 ">
-                    {
-                      user.loaded && user.photo ? <Avatar user={user} /> : <AvatarLetter user={user} />
-                    }
-                    {/* <Avatar user={user} />
-                    <AvatarLetter user={user} /> */}
+                    {user.loaded && user.photo ? (
+                      <Avatar user={user} />
+                    ) : (
+                      <AvatarLetter user={user} />
+                    )}
 
                     <svg
                       onClick={handleLogout}

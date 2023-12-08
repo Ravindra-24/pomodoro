@@ -9,7 +9,6 @@ import ForgotPassword from "./components/auth/ForgotPassword";
 import ResetPassword from "./components/auth/ResetPassword";
 import { Toaster } from "react-hot-toast";
 import PomodoroMain from "./components/Pomodoro/PomodoroMain";
-import GithubProfile from "./components/GithubProfile/GithubProfile";
 
 const AllRoutes = () => {
   const [progress, setProgress] = useState(0);
@@ -31,10 +30,6 @@ const AllRoutes = () => {
       />
       <Routes>
         <Route path="/" element={<PomodoroMain setProgress={setProgress} />} />
-        <Route
-          path="/github-profile"
-          element={<GithubProfile setProgress={setProgress} />}
-        />
         <Route path="/login" element={<Login setProgress={setProgress} />} />
         <Route path="/signup" element={<Signup setProgress={setProgress} />} />
         <Route
